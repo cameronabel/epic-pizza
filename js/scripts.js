@@ -1,5 +1,5 @@
 class Pizza {
-  constructor() {
+  constructor(menu) {
     this.size = "large";
     this.crust = menu.crusts.handTossed;
     this.sauce = menu.sauces.tomato;
@@ -53,7 +53,6 @@ class Pizza {
 }
 
 function loadCrusts(menu) {
-  
   const crustArea = document.getElementById('crust-area');
   for (const crust in menu.crusts) {
     const radio = document.createElement('input');
@@ -74,7 +73,6 @@ function loadCrusts(menu) {
     const p = document.createElement('p');
     p.append(menu.crusts[crust].description);
     crustArea.append(p);
-
   }
 }
 
@@ -99,13 +97,60 @@ function loadSauces(menu) {
     const p = document.createElement('p');
     p.append(menu.sauces[sauce].description);
     sauceArea.append(p);
+  }
+}
 
+function loadToppings(menu) {
+  const toppingArea = document.getElementById('topping-area');
+
+  function toppingRow (topping) {
+    const row = document.createElement('div');
+    row.classList.add('topping-row');
+
+    const left = document.createElement('div');
+    left.classList.add('pizza-segment');
+    const leftRadio = document.createElement('input');
+    leftRadio.setAttribute('type', 'radio');
+    leftRadio.setAttribute('name', 'topping');
+    leftRadio.setAttribute('value', 'left');
+    left.append(leftRadio);
+    row.append(left);
+
+    const full = document.createElement('div');
+    full.classList.add('pizza-segment');
+    const fullRadio = document.createElement('input');
+    fullRadio.setAttribute('type', 'radio');
+    fullRadio.setAttribute('name', 'topping');
+    fullRadio.setAttribute('value', 'full');
+    full.append(fullRadio);
+    row.append(full);
+
+    const right = document.createElement('div');
+    right.classList.add('pizza-segment');
+    const rightRadio = document.createElement('input');
+    rightRadio.setAttribute('type', 'radio');
+    rightRadio.setAttribute('name', 'topping');
+    rightRadio.setAttribute('value', 'right');
+    right.append(rightRadio);
+    row.append(right);
+
+    const toppingName = document.createElement('div');
+    toppingName.classList.add('topping-label');
+    toppingName.append(menu.toppings[topping].name);
+    row.append(toppingName);
+
+    return row;
+  }
+  for (const topping in menu.toppings) {
+    const row = toppingRow(topping)
+    toppingArea.append(row);
   }
 }
 
 function loadFields(menu) {
   loadCrusts(menu);
   loadSauces(menu);
+  loadToppings(menu);
 }
 
 async function readMenu() {

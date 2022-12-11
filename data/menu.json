@@ -52,7 +52,7 @@
       "premium":true
     },
     "onion":{
-      "name":"onion",
+      "name":"Onion",
       "type":"vegan",
       "premium":false
     },
@@ -76,13 +76,13 @@
       "type":"vegan",
       "premium":false
     },
-    "feta":{
-      "name":"Feta Crumbles",
-      "type":"vegetarian",
-      "premium":true
-    },
     "olive":{
       "name":"Sliced Olives",
+      "type":"vegan",
+      "premium":false
+    },
+    "bellPepper":{
+      "name":"Bell Pepper",
       "type":"vegan",
       "premium":false
     },
@@ -91,10 +91,10 @@
       "type":"vegetarian",
       "premium":false
     },
-    "bellPepper":{
-      "name":"Bell Pepper",
-      "type":"vegan",
-      "premium":false
+    "feta":{
+      "name":"Feta Crumbles",
+      "type":"vegetarian",
+      "premium":true
     }
   },
   "crusts":{
