@@ -1,0 +1,18 @@
+Test: "It should return a Pizza object with properties for size, crust, sauce, and toppings. Default properties are Large size, Hand-Tossed crust, Tomato sauce, no toppings"
+Code: const myPizza = new Pizza();
+Expected Output: Pizza {
+"size": "large",
+"crust": {
+"name": "Hand-Tossed",
+"type": "vegan",
+"premium": false
+},
+"sauce": {
+"name": "Tomato Base",
+"type": "vegan",
+"premium": false
+},
+"fullToppings": {},
+"leftToppings": {},
+"rightToppings": {}
+}
