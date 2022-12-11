@@ -19,6 +19,37 @@ class Pizza {
       [...this.rightToppings].filter(topping => !this.fullToppings.has(topping))
     );
   }
+  crustPrice() {
+    if (this.crust.premium) {
+      return menu.prices.crust.premium[this.size];
+    } else {
+      return menu.prices.crust.regular[this.size];
+    }
+  }
+  toppingPrice() {
+    let total = 0;
+    self = this;
+    this.fullToppings.forEach(function(topping) {
+      if (topping.premium) {
+        total += menu.prices.topping.premium[self.size];
+      } else {
+        total += menu.prices.topping.regular[self.size];
+      }
+    });
+    [this.leftToppings, this.rightToppings].forEach(function(side) {
+      side.forEach(function(topping) {
+        if (topping.premium) {
+          total += menu.prices.topping.premium[self.size] - .5;
+        } else {
+          total += menu.prices.topping.regular[self.size] - .5;
+        }
+      });
+    });
+    return total;
+  }
+  computePrice() {
+    return this.crustPrice() + this.toppingPrice();
+  }
 }
 
 window.onload = function() {
