@@ -40,8 +40,8 @@ class Pizza {
     });
     [this.leftToppings, this.rightToppings].forEach(function(side) {
       side.forEach(function(topping) {
-        console.log(topping)
-        console.log(self.menu)
+        console.log(topping);
+        console.log(self.menu);
         if (self.menu.toppings[topping].premium) {
           total += self.menu.prices.topping.premium[self.size] - .5;
         } else {
@@ -62,9 +62,9 @@ function loadCrusts(menu) {
   for (const crust in menu.crusts) {
     const radio = document.createElement('input');
     radio.setAttribute('type', 'radio');
-    radio.setAttribute('value', crust)
-    radio.setAttribute('id', crust)
-    radio.setAttribute('name', 'crust-selection')
+    radio.setAttribute('value', crust);
+    radio.setAttribute('id', crust);
+    radio.setAttribute('name', 'crust-selection');
     if (crust === 'handTossed') {
       radio.setAttribute('checked', true);
     }
@@ -86,9 +86,9 @@ function loadSauces(menu) {
   for (const sauce in menu.sauces) {
     const radio = document.createElement('input');
     radio.setAttribute('type', 'radio');
-    radio.setAttribute('value', sauce)
-    radio.setAttribute('id', sauce)
-    radio.setAttribute('name', 'sauce-selection')
+    radio.setAttribute('value', sauce);
+    radio.setAttribute('id', sauce);
+    radio.setAttribute('name', 'sauce-selection');
     if (sauce === 'tomato') {
       radio.setAttribute('checked', true);
     }
@@ -143,17 +143,17 @@ function loadToppings(menu) {
     toppingName.classList.add('topping-label');
     toppingName.append(menu.toppings[topping].name);
     if (menu.toppings[topping].type === 'vegan') {
-      toppingName.append('🌱')
+      toppingName.append('🌱');
     }
     if (menu.toppings[topping].premium) {
-      toppingName.append('⭐')
+      toppingName.append('⭐');
     }
     row.append(toppingName);
 
     return row;
   }
   for (const topping in menu.toppings) {
-    const row = toppingRow(topping)
+    const row = toppingRow(topping);
     toppingArea.append(row);
   }
 }
@@ -169,7 +169,7 @@ function loadFields(menu) {
       pizzaSelectionHandler(event, menu);
     });
   }
-  pizzaSelectionHandler(event, menu)
+  pizzaSelectionHandler(event, menu);
 }
 
 async function readMenu() {
@@ -189,11 +189,11 @@ function pizzaSelectionHandler (event, menu) {
       const field = document.querySelector(`input[name="${topping}"]:checked`);
       if (field) {
         if (field.value === 'left') {
-          pizza.leftToppings.add(topping)
+          pizza.leftToppings.add(topping);
         } else if (field.value === 'right') {
-          pizza.rightToppings.add(topping)
+          pizza.rightToppings.add(topping);
         } else if (field.value === 'full') {
-          pizza.fullToppings.add(topping)
+          pizza.fullToppings.add(topping);
         }
 
       }
