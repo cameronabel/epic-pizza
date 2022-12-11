@@ -1,0 +1,36 @@
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#page {
+  height: 100%;
+  background-color: #FAF9F6;
+  width: 100%;
+  position: absolute;
+  min-height: 540px;
+  text-align: center;
+}
+
+#banner {
+  height: 20vh;
+  background: url("../img/logo-color.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #50a060;
+  background-position: center;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  width: 100%;
+  text-align: center;
+}
+
+#content {
+  width: 80%;
+}
