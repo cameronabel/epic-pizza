@@ -1,3 +1,40 @@
+# _EPIC Pizza_
+
+#### By _**Cameron Abel**_
+
+#### _A JS Exercise on Objects_
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+
+## Description
+
+A test site for calculating pizza prices.
+
+## Setup/Installation Requirements
+
+This site may be accessed on [GitHub pages](https://cameronabel.github.io/epic-pizza/). To host this site locally:
+
+- Clone this repository to your local machine
+- Navigate to the top level directory
+- Open `index.html` in your browser
+
+Once active, make your pizza selections and see your price in the lower right corner.
+
+## Known Bugs
+
+- Currently no way to clear a topping
+- Topping half labels dont always play nice with extreme screen sizes
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+## TDD Elements
+
 Describe Pizza()
 
 Test: "It should return a Pizza object with properties for size, crust, sauce, and toppings. Default properties are Large size, Hand-Tossed crust, Tomato sauce, no toppings"

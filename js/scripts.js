@@ -1,3 +1,4 @@
+// Business Logic
 class Pizza {
   constructor(menu) {
     this.menu = menu;
@@ -55,6 +56,7 @@ class Pizza {
   }
 }
 
+// Interface Logic
 function loadCrusts(menu) {
   const crustArea = document.getElementById('crust-area');
   for (const crust in menu.crusts) {
@@ -209,7 +211,4 @@ function pizzaSelectionHandler (event, menu) {
 window.onload = function() {
   readMenu()
   .then(menu => loadFields(menu));
-
-
-
 }
