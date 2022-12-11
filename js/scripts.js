@@ -7,6 +7,18 @@ class Pizza {
     this.leftToppings = new Set();
     this.rightToppings = new Set();
   }
+  reconcileSides() {
+    const intersection = new Set(
+      [...this.leftToppings].filter((topping) => this.rightToppings.has(topping))
+    );
+    intersection.forEach(topping => this.fullToppings.add(topping));
+    this.leftToppings = new Set(
+      [...this.leftToppings].filter(topping => !this.fullToppings.has(topping))
+    );
+    this.rightToppings = new Set(
+      [...this.rightToppings].filter(topping => !this.fullToppings.has(topping))
+    );
+  }
 }
 
 window.onload = function() {
