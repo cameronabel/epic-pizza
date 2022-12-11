@@ -53,10 +53,9 @@ class Pizza {
 }
 
 function loadCrusts(menu) {
-  console.log(menu)
+  
   const crustArea = document.getElementById('crust-area');
   for (const crust in menu.crusts) {
-    console.log(crust);
     const radio = document.createElement('input');
     radio.setAttribute('type', 'radio');
     radio.setAttribute('value', crust)
@@ -72,7 +71,41 @@ function loadCrusts(menu) {
     crustArea.append(label);
     const br = document.createElement('br');
     crustArea.append(br);
+    const p = document.createElement('p');
+    p.append(menu.crusts[crust].description);
+    crustArea.append(p);
+
   }
+}
+
+function loadSauces(menu) {
+  const sauceArea = document.getElementById('sauce-area');
+  for (const sauce in menu.sauces) {
+    const radio = document.createElement('input');
+    radio.setAttribute('type', 'radio');
+    radio.setAttribute('value', sauce)
+    radio.setAttribute('id', sauce)
+    radio.setAttribute('name', 'sauce-selection')
+    if (sauce === 'tomato') {
+      radio.setAttribute('checked', true);
+    }
+    const label = document.createElement('label');
+    label.setAttribute('for', sauce);
+    label.append(menu.sauces[sauce].name);
+    sauceArea.append(radio);
+    sauceArea.append(label);
+    const br = document.createElement('br');
+    sauceArea.append(br);
+    const p = document.createElement('p');
+    p.append(menu.sauces[sauce].description);
+    sauceArea.append(p);
+
+  }
+}
+
+function loadFields(menu) {
+  loadCrusts(menu);
+  loadSauces(menu);
 }
 
 async function readMenu() {
@@ -85,5 +118,5 @@ async function readMenu() {
 
 window.onload = function() {
   readMenu()
-  .then(menu => loadCrusts(menu));
+  .then(menu => loadFields(menu));
 }

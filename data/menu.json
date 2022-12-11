@@ -121,12 +121,14 @@
     "tomato":{
       "name":"Tomato Base",
       "type":"vegan",
-      "premium":false
+      "premium":false,
+      "description": "Traditional Tomato Base."
     },
     "alfredo":{
       "name":"Alfredo Base",
       "type":"vegetarian",
-      "premium":false
+      "premium":false,
+      "description": "Creamy Alfredo Base."
      }
    }
  }
