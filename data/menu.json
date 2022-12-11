@@ -101,17 +101,20 @@
     "handTossed":{
       "name":"Hand-Tossed",
       "type":"vegan",
-      "premium":false
+      "premium":false,
+      "description": "Our original seasoned crust."
     },
     "thin":{
       "name":"Thin",
       "type":"vegan",
-      "premium":false
+      "premium":false,
+      "description": "Still seasoned, just thinner."
     },
     "glutenFree":{
       "name":"Gluten-Free",
       "type":"vegan",
-      "premum":true
+      "premium":true,
+      "description": "All the flavor, no gluten."
     }
   },
   "sauces":{

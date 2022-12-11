@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=PT+Sans&display=swap');
 
 html,
 body {
@@ -5,6 +6,7 @@ body {
   padding: 0;
   overflow-y: hidden;
   overflow-x: hidden;
+  font-family: 'Fira Mono'
 }
 
 #page {
@@ -26,11 +28,62 @@ body {
   box-sizing: border-box;
   position: relative;
   margin-top: 40px;
-  margin-bottom: 80px;
   width: 100%;
   text-align: center;
 }
 
 #content {
-  width: 80%;
+  width: 90%;
+  min-height: 100px;
+  margin: 5%;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+#pricing {
+  width: 43%;
+  height: fit-content;
+  min-height: 100px;
+  box-sizing: border-box;
+  border: 3px solid red;
+  float: right;
+}
+
+#selections {
+  width: 53%;
+  height: fit-content;
+  min-height: 400px;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+}
+
+.selection {
+  border: 1px solid #50a060
+}
+
+.selection-head {
+  width: 100%;
+  background-color: #50a060;
+  display: block;
+  text-align: left;
+  font-weight: 800;
+  color: beige;
+  font-size: 1.3em;
+}
+
+#size-area,
+#crust-area {
+  text-align: left;
+}
+
+.selection-sep {
+  width: 90%;
 }

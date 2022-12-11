@@ -52,9 +52,38 @@ class Pizza {
   }
 }
 
+function loadCrusts(menu) {
+  console.log(menu)
+  const crustArea = document.getElementById('crust-area');
+  for (const crust in menu.crusts) {
+    console.log(crust);
+    const radio = document.createElement('input');
+    radio.setAttribute('type', 'radio');
+    radio.setAttribute('value', crust)
+    radio.setAttribute('id', crust)
+    radio.setAttribute('name', 'crust-selection')
+    if (crust === 'handTossed') {
+      radio.setAttribute('checked', true);
+    }
+    const label = document.createElement('label');
+    label.setAttribute('for', crust);
+    label.append(menu.crusts[crust].name);
+    crustArea.append(radio);
+    crustArea.append(label);
+    const br = document.createElement('br');
+    crustArea.append(br);
+  }
+}
+
+async function readMenu() {
+  const menuUrl = './data/menu.json';
+  const request = new Request(menuUrl);
+  const response = await fetch(request);
+  const menu = await response.json();
+  return menu;
+}
+
 window.onload = function() {
-  fetch('./data/menu.json')
-    .then(response => response.json())
-    .then(data => menu = data)
-    .catch(error => console.log(error));
+  readMenu()
+  .then(menu => loadCrusts(menu));
 }
