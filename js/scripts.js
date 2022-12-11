@@ -1,5 +1,6 @@
 class Pizza {
   constructor(menu) {
+    this.menu = menu;
     this.size = "large";
     this.crust = menu.crusts.handTossed;
     this.sauce = menu.sauces.tomato;
@@ -20,28 +21,30 @@ class Pizza {
     );
   }
   crustPrice() {
-    if (this.crust.premium) {
-      return menu.prices.crust.premium[this.size];
+    if (this.menu.crusts[this.crust].premium) {
+      return this.menu.prices.crust.premium[this.size];
     } else {
-      return menu.prices.crust.regular[this.size];
+      return this.menu.prices.crust.regular[this.size];
     }
   }
   toppingPrice() {
     let total = 0;
     self = this;
     this.fullToppings.forEach(function(topping) {
-      if (topping.premium) {
-        total += menu.prices.topping.premium[self.size];
+      if (self.menu.toppings[topping].premium) {
+        total += self.menu.prices.topping.premium[self.size];
       } else {
-        total += menu.prices.topping.regular[self.size];
+        total += self.menu.prices.topping.regular[self.size];
       }
     });
     [this.leftToppings, this.rightToppings].forEach(function(side) {
       side.forEach(function(topping) {
-        if (topping.premium) {
-          total += menu.prices.topping.premium[self.size] - .5;
+        console.log(topping)
+        console.log(self.menu)
+        if (self.menu.toppings[topping].premium) {
+          total += self.menu.prices.topping.premium[self.size] - .5;
         } else {
-          total += menu.prices.topping.regular[self.size] - .5;
+          total += self.menu.prices.topping.regular[self.size] - .5;
         }
       });
     });
@@ -111,7 +114,7 @@ function loadToppings(menu) {
     left.classList.add('pizza-segment');
     const leftRadio = document.createElement('input');
     leftRadio.setAttribute('type', 'radio');
-    leftRadio.setAttribute('name', 'topping');
+    leftRadio.setAttribute('name', topping);
     leftRadio.setAttribute('value', 'left');
     left.append(leftRadio);
     row.append(left);
@@ -120,7 +123,7 @@ function loadToppings(menu) {
     full.classList.add('pizza-segment');
     const fullRadio = document.createElement('input');
     fullRadio.setAttribute('type', 'radio');
-    fullRadio.setAttribute('name', 'topping');
+    fullRadio.setAttribute('name', topping);
     fullRadio.setAttribute('value', 'full');
     full.append(fullRadio);
     row.append(full);
@@ -129,7 +132,7 @@ function loadToppings(menu) {
     right.classList.add('pizza-segment');
     const rightRadio = document.createElement('input');
     rightRadio.setAttribute('type', 'radio');
-    rightRadio.setAttribute('name', 'topping');
+    rightRadio.setAttribute('name', topping);
     rightRadio.setAttribute('value', 'right');
     right.append(rightRadio);
     row.append(right);
@@ -137,6 +140,12 @@ function loadToppings(menu) {
     const toppingName = document.createElement('div');
     toppingName.classList.add('topping-label');
     toppingName.append(menu.toppings[topping].name);
+    if (menu.toppings[topping].type === 'vegan') {
+      toppingName.append('🌱')
+    }
+    if (menu.toppings[topping].premium) {
+      toppingName.append('⭐')
+    }
     row.append(toppingName);
 
     return row;
@@ -151,6 +160,14 @@ function loadFields(menu) {
   loadCrusts(menu);
   loadSauces(menu);
   loadToppings(menu);
+  const inputs = document.getElementsByTagName('input');
+
+  for (const input of inputs) {
+    input.addEventListener("click", function() {
+      pizzaSelectionHandler(event, menu);
+    });
+  }
+  pizzaSelectionHandler(event, menu)
 }
 
 async function readMenu() {
@@ -161,7 +178,38 @@ async function readMenu() {
   return menu;
 }
 
+function pizzaSelectionHandler (event, menu) {
+  const pizza = new Pizza(menu);
+  function updatePizza () {
+    pizza.size = document.querySelector('input[name="size-selection"]:checked').value;
+    pizza.crust = document.querySelector('input[name="crust-selection"]:checked').value;
+    for (const topping in menu.toppings) {
+      const field = document.querySelector(`input[name="${topping}"]:checked`);
+      if (field) {
+        if (field.value === 'left') {
+          pizza.leftToppings.add(topping)
+        } else if (field.value === 'right') {
+          pizza.rightToppings.add(topping)
+        } else if (field.value === 'full') {
+          pizza.fullToppings.add(topping)
+        }
+
+      }
+    }
+  }
+
+  updatePizza(pizza, menu);
+  const price = pizza.computePrice();
+  document.getElementById('price').innerText = `Price: ${price.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })}`;
+}
+
 window.onload = function() {
   readMenu()
   .then(menu => loadFields(menu));
+
+
+
 }

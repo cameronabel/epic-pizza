@@ -141,3 +141,8 @@ h2 {
 #right-segment {
   margin-left:  -1.9%;
 }
+
+#food-notation {
+  text-align: right;
+  font-size: smaller;
+}
